@@ -1,4 +1,3 @@
-import java.util.Vector;
 
 public class Node
 {
@@ -14,12 +13,13 @@ public class Node
         UP, DOWN, LEFT, RIGHT;
     }
 
-    Node (int[][] currentState)
+    Node (int[][] currentState, int currentGx)
     {
         this.currentState = currentState;
         hx = calculateHx();
-        gx = calculateGx();
-        System.out.println(hx);
+        this.gx = currentGx;
+        fx = gx + hx;
+
     }
 
     private int calculateHx ()
@@ -65,13 +65,6 @@ public class Node
         return pos;
     }
 
-    //TODO method for calculating gx
-    private int calculateGx ()
-    {
-
-        return 0;
-    }
-
     private void printState (int[][] state)
     {
         for (int i = 0; i < state.length; i++)
@@ -88,5 +81,18 @@ public class Node
         }
 
         System.out.println("\n");
+    }
+
+    public boolean isGoal()
+    {
+        for (int i = 0; i < goalState.length; i++)
+        {
+            for (int j = 0; j < goalState[i].length; j++)
+            {
+                if (goalState[i][j] != currentState[i][j])
+                    return false;
+            }
+        }
+        return true;
     }
 }
