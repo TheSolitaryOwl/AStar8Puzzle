@@ -17,15 +17,17 @@ public class Node
     Node (int[][] currentState)
     {
         this.currentState = currentState;
-        System.out.println(calculateHx());
+        hx = calculateHx();
+        gx = calculateGx();
+        System.out.println(hx);
     }
 
-    //TODO method for calculating hx
     private int calculateHx ()
     {
         int xDis = 0;
         int yDis = 0;
         int goalPos[]; //x y
+        int hx = 0;
 
         for (int i = 0; i < currentState.length; i++)
         {
@@ -35,9 +37,15 @@ public class Node
                 goalPos = findPos(currentNum);
                 xDis = Math.abs(j - goalPos[0]);
                 yDis = Math.abs(i - goalPos[1]);
+                hx += xDis + yDis;
             }
         }
-        return xDis + yDis;
+        return hx;
+    }
+
+    public int getFx()
+    {
+        return fx;
     }
 
     private int[] findPos (int n)
@@ -47,7 +55,7 @@ public class Node
         {
             for (int j = 0; j < goalState[i].length; j++)
             {
-                if (goalState[i][i] == n)
+                if (goalState[i][j] == n)
                 {
                     pos[0] = j;
                     pos[1] = i;
@@ -58,6 +66,11 @@ public class Node
     }
 
     //TODO method for calculating gx
+    private int calculateGx ()
+    {
+
+        return 0;
+    }
 
     private void printState (int[][] state)
     {
