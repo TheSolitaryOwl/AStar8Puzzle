@@ -8,11 +8,6 @@ public class Node
     private int goalState[][] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
     private int currentState[][];
 
-    enum Moves
-    {
-        UP, DOWN, LEFT, RIGHT;
-    }
-
     Node (int[][] currentState, int currentGx)
     {
         this.currentState = currentState;
@@ -94,5 +89,10 @@ public class Node
             }
         }
         return true;
+    }
+
+    public int[][] getCurrentState()
+    {
+        return currentState;
     }
 }

@@ -17,6 +17,11 @@ public class Main
     private static ArrayList<Node> openList = new ArrayList<>();
     private static ArrayList<Node> closedList = new ArrayList<>();
 
+    enum MoveDirectios
+    {
+        UP, DOWN, LEFT, RIGHT;
+    }
+
     public static void main (String[] args)
     {
         // Initialize
@@ -36,11 +41,37 @@ public class Main
                 println("We have found the goal");
                 break;
             }
-            else
+            else // If we haven't found the goal
             {
+                closedList.add(currentNode);
+                openList.remove(currentNode);
 
+                for (MoveDirectios direction : MoveDirectios.values())
+                {
+                    Node up, down, left, right;
+
+                    switch (direction) {
+                        case UP:
+                            up = new Node(swapTiles();)
+                            break;
+                        case DOWN:
+
+                            break;
+                        case LEFT:
+
+                            break;
+                        case RIGHT:
+
+                            break;
+                    }
+                }
             }
         }
+    }
+
+    private static void swapTiles(int[][] state, MoveDirectios direction)
+    {
+
     }
 
     private static Node getNodeWithLowestFx ()
