@@ -25,7 +25,7 @@ public class Main
     public static void main (String[] args)
     {
         // Initialize
-        openList.add(new Node(startState, gx + 1));
+        openList.add(new Node(startState, gx));
 
         // Solve puzzle using the A* algorithm
         aStar();
@@ -59,7 +59,11 @@ public class Main
                             }
                             break;
                         case DOWN:
-
+                            int[][] downState = swapTiles (currentNode.getCurrentState (), direction);
+                            if (downState !=null)
+                            {
+                                down = new Node(downState, gx);
+                            }
                             break;
                         case LEFT:
 
@@ -77,11 +81,10 @@ public class Main
     {
         int[][] newState = copyMatrix(state);
         int[] emptyPos = new int[2];
+        emptyPos = findEmpty (newState);
         switch (direction)
         {
             case UP:
-                emptyPos = findEmpty (newState);
-
                 if (emptyPos[0] > 0)
                 {
                     int temp = newState[emptyPos[0] - 1][emptyPos[1]];
@@ -94,6 +97,16 @@ public class Main
                 }
                 break;
             case DOWN:
+                if (emptyPos[0] < state.length)
+                {
+                    int temp = newState[emptyPos[0] + 1][emptyPos[1]];
+                    newState[emptyPos[0] + 1][emptyPos[1]] = newState[emptyPos[0]][emptyPos[1]];
+                    newState[emptyPos[0]][emptyPos[1]] = temp;
+                }
+                else
+                {
+                    newState = null;
+                }
                 break;
             case LEFT:
                 break;
