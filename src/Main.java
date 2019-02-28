@@ -52,24 +52,32 @@ public class Main
 
                     switch (direction) {
                         case UP:
-                            int[][] upState = swapTiles (currentNode.getCurrentState (), direction);
+                            int[][] upState = swapTiles (currentNode.getCurrentState(), direction);
                             if (upState !=null)
                             {
                                 up = new Node(upState, gx);
                             }
                             break;
                         case DOWN:
-                            int[][] downState = swapTiles (currentNode.getCurrentState (), direction);
+                            int[][] downState = swapTiles (currentNode.getCurrentState(), direction);
                             if (downState !=null)
                             {
                                 down = new Node(downState, gx);
                             }
                             break;
                         case LEFT:
-
+                            int[][] leftState = swapTiles(currentNode.getCurrentState(), direction);
+                            if (leftState !=null)
+                            {
+                                left = new Node(leftState, gx);
+                            }
                             break;
                         case RIGHT:
-
+                            int[][] rightState = swapTiles(currentNode.getCurrentState(), direction);
+                            if (rightState != null)
+                            {
+                                right = new Node(rightState, gx);
+                            }
                             break;
                     }
                 }
@@ -81,7 +89,7 @@ public class Main
     {
         int[][] newState = copyMatrix(state);
         int[] emptyPos = new int[2];
-        emptyPos = findEmpty (newState);
+        emptyPos = findEmpty(newState);
         switch (direction)
         {
             case UP:
@@ -109,8 +117,28 @@ public class Main
                 }
                 break;
             case LEFT:
+                if (emptyPos[1] > 0)
+                {
+                    int temp = newState[emptyPos[0]][emptyPos[1] - 1];
+                    newState[emptyPos[0]][emptyPos[1] - 1] = newState[emptyPos[0]][emptyPos[1]];
+                    newState[emptyPos[0]][emptyPos[1]] = temp;
+                }
+                else
+                {
+                    newState = null;
+                }
                 break;
             case RIGHT:
+                if (emptyPos[1] < state[0].length)
+                {
+                    int temp = newState[emptyPos[0]][emptyPos[1] +1];
+                    newState[emptyPos[0]][emptyPos[1] + 1] = newState[emptyPos[0]][emptyPos[1]];
+                    newState[emptyPos[0]][emptyPos[1]] = temp;
+                }
+                else
+                {
+                    newState = null;
+                }
                 break;
         }
         return newState;
