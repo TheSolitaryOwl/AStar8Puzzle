@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /*
  * Zachary Rowton
  * Prof Brian McLaughlan
@@ -8,10 +6,13 @@ import java.util.ArrayList;
  */
 
 // Import statements
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Main
 {
-    private static int[][] startState = {{5, 2, 4}, {1, 0, 8}, {3, 6, 7}};
+    //private static int[][] startState = {{5, 2, 4}, {1, 0, 8}, {3, 6, 7}};
+    private static int[][] startState = generateStartState();
     private static int goalState[][] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
     private static int gx = 1;
     private static ArrayList<Node> openList = new ArrayList<>();
@@ -26,6 +27,7 @@ public class Main
     {
         // Initialize
         openList.add(new Node(startState, gx));
+        printState(startState);
 
         // Solve puzzle using the A* algorithm
         aStar();
@@ -160,6 +162,27 @@ public class Main
         returnNode = openList.get(indexOfLowestFx);
 
         return returnNode;
+    }
+
+    private static int[][] generateStartState()
+    {
+        int[][] state = new int[3][3];
+        int size = 9;
+        Random random = new Random();
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        for (int i = 0; i < 9; i++)
+            numbers.add(i);
+        for (int i = 0; i < state.length; i++)
+        {
+            for (int j = 0; j < state[i].length; j++)
+            {
+                int index = random.nextInt(size);
+                state[i][j] = numbers.get(index);
+                numbers.remove(index);
+                size--;
+            }
+        }
+        return state;
     }
 
 

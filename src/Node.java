@@ -14,7 +14,7 @@ public class Node
         hx = calculateHx();
         this.gx = currentGx;
         fx = gx + hx;
-
+        System.out.println(fx);
     }
 
     private int calculateHx ()
