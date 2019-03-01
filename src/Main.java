@@ -46,6 +46,7 @@ public class Main
             else // If we haven't found the goal
             {
                 openList.remove(currentNode);
+                openList.clear();
                 closedList.add(currentNode);
 
                 for (MoveDirections direction : MoveDirections.values())
@@ -58,6 +59,7 @@ public class Main
                             if (upState !=null)
                             {
                                 up = new Node(upState, gx);
+                                openList.add(up);
                             }
                             break;
                         case DOWN:
@@ -65,6 +67,7 @@ public class Main
                             if (downState !=null)
                             {
                                 down = new Node(downState, gx);
+                                openList.add(down);
                             }
                             break;
                         case LEFT:
@@ -72,6 +75,7 @@ public class Main
                             if (leftState !=null)
                             {
                                 left = new Node(leftState, gx);
+                                openList.add(left);
                             }
                             break;
                         case RIGHT:
@@ -79,6 +83,7 @@ public class Main
                             if (rightState != null)
                             {
                                 right = new Node(rightState, gx);
+                                openList.add(right);
                             }
                             break;
                     }
