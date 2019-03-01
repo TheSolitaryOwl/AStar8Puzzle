@@ -26,8 +26,8 @@ public class Main
     public static void main (String[] args)
     {
         // Initialize
-        printState(startState);
         openList.add(new Node(startState, gx));
+        printState(startState);
 
         // Solve puzzle using the A* algorithm
         aStar();
@@ -107,7 +107,7 @@ public class Main
                 }
                 break;
             case DOWN:
-                if (emptyPos[0] < state.length - 1)
+                if (emptyPos[0] < state.length)
                 {
                     int temp = newState[emptyPos[0] + 1][emptyPos[1]];
                     newState[emptyPos[0] + 1][emptyPos[1]] = newState[emptyPos[0]][emptyPos[1]];
@@ -131,7 +131,7 @@ public class Main
                 }
                 break;
             case RIGHT:
-                if (emptyPos[1] < state[0].length - 1)
+                if (emptyPos[1] < state[0].length)
                 {
                     int temp = newState[emptyPos[0]][emptyPos[1] +1];
                     newState[emptyPos[0]][emptyPos[1] + 1] = newState[emptyPos[0]][emptyPos[1]];
@@ -234,8 +234,8 @@ public class Main
             {
                 if (state[i][j] == 0)
                 {
-                    pos[0] = i;
-                    pos[1] = j;
+                    pos[0] = j;
+                    pos[1] = i;
                 }
             }
         }
